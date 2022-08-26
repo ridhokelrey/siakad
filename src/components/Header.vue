@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <div class="logo">
-      <img src="../assets/logo.png" alt="logo" />
+      <img src="../assets/icons/logo.png" alt="logo" />
     </div>
     <ul class="nav-link">
       <li><router-link to="/" class="active-link">Beranda</router-link></li>

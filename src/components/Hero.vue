@@ -11,8 +11,7 @@
       </div>
       <button class="btn">Explore</button>
     </div>
-
-    <img src="../assets/hero-img.png" />
+    <img src="../assets/images/hero-img.png" />
   </div>
 </template>
 
