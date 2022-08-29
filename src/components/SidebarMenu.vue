@@ -3,21 +3,23 @@
     <ul class="sidebar-nav">
       <li class="sidebar-nav-link">
         <img class="sidebar-icon" src="../assets/icons/id-card.svg" />
-        <router-link to="/data-mahasiswa">Daftar Mahasiswa</router-link>
+        <button @click="this.$emit('show-student-list-button')">
+          Daftar Mahasiswa
+        </button>
       </li>
       <li class="sidebar-nav-link">
         <img class="sidebar-icon" src="../assets/icons/add-user.svg" />
-        <router-link to="/data-mahasiswa/add-student"
-          >Tambah Mahasiswa</router-link
-        >
+        <button @click="this.$emit('show-add-student-button')">
+          Tambah Mahasiswa
+        </button>
       </li>
       <li class="sidebar-nav-link">
         <img class="sidebar-icon" src="../assets/icons/table.svg" />
-        <router-link to="/data-mahasiswa">Jadwal Kuliah</router-link>
+        <button to="/data-mahasiswa">Jadwal Kuliah</button>
       </li>
       <li class="sidebar-nav-link">
         <img class="sidebar-icon" src="../assets/icons/test-result.svg" />
-        <router-link to="/data-mahasiswa">Nilai Mahasiswa</router-link>
+        <button to="/data-mahasiswa">Nilai Mahasiswa</button>
       </li>
     </ul>
   </div>
@@ -30,13 +32,6 @@ export default {
 </script>
 
 <style scoped>
-.sidebar-menu {
-  width: 30%;
-  margin-right: 20px;
-}
-.student-content {
-  width: 80%;
-}
 .sidebar-nav li {
   list-style: none;
   font-size: 18px;
@@ -52,6 +47,12 @@ export default {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+.sidebar-nav-link button {
+  border: none;
+  background-color: inherit;
+  font-size: 18px;
+  cursor: pointer;
 }
 .sidebar-nav li:hover {
   background-color: #efefef;

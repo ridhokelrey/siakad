@@ -3,7 +3,8 @@ import Home from '../views/Home.vue';
 import DataMahasiswa from '../views/DataMahasiswa.vue';
 import DataProdi from '../views/DataProdi.vue';
 import Contact from '../views/Contact.vue';
-import AddStudent from '../views/AddStudent.vue'
+// import AddStudent from '../views/AddStudent.vue';
+// import StudentList from '../components/StudentList.vue';
 
 const routes = [
   {
@@ -15,6 +16,10 @@ const routes = [
     path: '/data-mahasiswa',
     name: 'DataMahasiswa',
     component: DataMahasiswa,
+    // children: [
+    //   { path: 'daftar-mahasiswa', component: StudentList },
+    //   { path: 'tambah-mahasiswa', component: AddStudent },
+    // ],
   },
   {
     path: '/data-prodi',
@@ -25,11 +30,6 @@ const routes = [
     path: '/contact',
     name: 'Contact',
     component: Contact,
-  },
-  {
-    path: '/data-mahasiswa/add-student',
-    name: 'AddStudent',
-    component: AddStudent,
   },
 ];
 
