@@ -7,12 +7,7 @@
 
     <div class="form-control">
       <label>Nama Mahasiswa</label>
-      <input
-        type="text"
-        v-model="name"
-        name="name"
-        placeholder="Nama Mahasiswa"
-      />
+      <input type="text" v-model="name" name="name" placeholder="Nama Mahasiswa" />
     </div>
 
     <div class="form-control">
@@ -101,13 +96,13 @@
 </template>
 
 <script>
-import Header from '../components/Header.vue';
-import Footer from '../components/Footer.vue';
-import SidebarMenu from '../components/SidebarMenu.vue';
-import StudentList from '../components/StudentList.vue';
+import Header from "./Header.vue";
+import Footer from "./Footer.vue";
+import SidebarMenu from "./SidebarMenu.vue";
+import StudentList from "./StudentList.vue";
 
 export default {
-  name: 'AddStudentForm',
+  name: "AddStudentForm",
   components: {
     Header,
     Footer,
@@ -116,17 +111,16 @@ export default {
   },
   data() {
     return {
-      nim: '',
-      name: '',
-      periodeMasuk: '',
-      fakultas: '',
-      prodi: '',
-      // foto: '',
-      tempatLahir: '',
-      tglLahir: '',
-      jenisKelamin: '',
-      alamat: '',
-      noTelepon: '',
+      nim: "",
+      name: "",
+      periodeMasuk: "",
+      fakultas: "",
+      prodi: "",
+      tempatLahir: "",
+      tglLahir: "",
+      jenisKelamin: "",
+      alamat: "",
+      noTelepon: "",
     };
   },
   methods: {
@@ -134,7 +128,7 @@ export default {
       e.preventDefault();
 
       if (!this.nim) {
-        alert('Please add NIM');
+        alert("Please add NIM");
         return;
       }
 
@@ -144,7 +138,6 @@ export default {
         periodeMasuk: this.periodeMasuk,
         fakultas: this.fakultas,
         prodi: this.prodi,
-        // foto: this.foto,
         tempatLahir: this.tempatLahir,
         tglLahir: this.tglLahir,
         jenisKelamin: this.jenisKelamin,
@@ -152,19 +145,18 @@ export default {
         noTelepon: this.noTelepon,
       };
 
-      this.$emit('add-student', newStudent);
+      this.$emit("add-student", newStudent);
 
-      (this.nim = ''),
-        (this.name = ''),
-        (this.periodeMasuk = ''),
-        (this.fakultas = ''),
-        (this.prodi = ''),
-        // (this.foto = ''),
-        (this.tempatLahir = ''),
-        (this.tglLahir = ''),
-        (this.jenisKelamin = ''),
-        (this.alamat = '');
-        (this.noTelepon = '');
+      (this.nim = ""),
+        (this.name = ""),
+        (this.periodeMasuk = ""),
+        (this.fakultas = ""),
+        (this.prodi = ""),
+        (this.tempatLahir = ""),
+        (this.tglLahir = ""),
+        (this.jenisKelamin = ""),
+        (this.alamat = "");
+      this.noTelepon = "";
     },
   },
 };

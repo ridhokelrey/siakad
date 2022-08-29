@@ -9,6 +9,7 @@
           @show-add-student-button="showAddStudentButton"
         />
         <div class="student-content">
+          <LoadingSpinner v-show="loading" />
           <StudentList v-show="showStudentList" :students="students" />
           <AddStudentForm v-show="showAddStudent" @add-student="addStudent" />
         </div>
@@ -19,31 +20,47 @@
 </template>
 
 <script>
-import Header from '../components/Header.vue';
-import Footer from '../components/Footer.vue';
-import SidebarMenu from '../components/SidebarMenu.vue';
-import StudentList from '../components/StudentList.vue';
-import AddStudentForm from './AddStudentForm.vue';
+import Header from "../components/Header.vue";
+import Footer from "../components/Footer.vue";
+import SidebarMenu from "../components/SidebarMenu.vue";
+import StudentList from "../components/StudentList.vue";
+import AddStudentForm from "../components/AddStudentForm.vue";
+import LoadingSpinner from "../components/LoadingSpinner.vue";
 
 export default {
-  name: 'DataMahasiswa',
+  name: "DataMahasiswa",
   components: {
     Header,
     Footer,
     SidebarMenu,
     AddStudentForm,
     StudentList,
+    LoadingSpinner,
   },
   data() {
     return {
       students: [],
+      loading: true,
       showStudentList: false,
       showAddStudent: false,
     };
   },
   methods: {
-    addStudent(student) {
-      this.students = [...this.students, student];
+    async addStudent(student) {
+      const res = await fetch(
+        "https://afternoon-garden-05625.herokuapp.com/api/students/",
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({ data: student }),
+        }
+      );
+
+      const data = await res.json();
+
+      this.students = [...this.students, data];
     },
     showStudentListButton() {
       this.showStudentList = !this.showStudentList;
@@ -53,22 +70,19 @@ export default {
       this.showAddStudent = !this.showAddStudent;
       this.showStudentList = false;
     },
+    async fetchStudents() {
+      const res = await fetch(
+        "https://afternoon-garden-05625.herokuapp.com/api/students"
+      );
+      const data = await res.json();
+
+      return data.data;
+    },
   },
-  created() {
-    this.students = [
-      {
-        nim: '12345',
-        name: 'Bambang',
-        periodeMasuk: '2020/2021 Ganjil',
-        fakultas: 'FT',
-        prodi: 'Teknik Sipil',
-        tempatLahir: 'Jakarta',
-        tglLahir: '02/08/2000',
-        jenisKelamin: 'Laki-laki',
-        alamat: 'Jl. Merdeka',
-        noTelepon: '0812345678',
-      },
-    ];
+  async created() {
+    this.loading = true;
+    this.students = await this.fetchStudents();
+    this.loading = false;
   },
 };
 </script>

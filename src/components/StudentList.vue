@@ -10,13 +10,13 @@
         <td>Program Studi</td>
         <td>Details</td>
       </thead>
-      <tbody :key="student.nim" v-for="student in students">
-        <td>{{ student.nim }}</td>
-        <td>{{ student.name }}</td>
-        <td>{{ student.periodeMasuk }}</td>
-        <td>{{ student.fakultas }}</td>
-        <td>{{ student.prodi }}</td>
-        <td><a href="/data-mahasiswa">More...</a></td>
+      <tbody :key="student.id" v-for="student in students">
+        <td>{{ student.attributes.nim }}</td>
+        <td>{{ student.attributes.name }}</td>
+        <td>{{ student.attributes.periodeMasuk }}</td>
+        <td>{{ student.attributes.fakultas }}</td>
+        <td>{{ student.attributes.prodi }}</td>
+        <td><a href="/data-mahasiswa/:id">More...</a></td>
       </tbody>
     </table>
   </div>
@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: 'StudentList',
+  name: "StudentList",
   props: {
     students: Object,
   },
