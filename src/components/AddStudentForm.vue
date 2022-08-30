@@ -147,17 +147,22 @@ export default {
 
       this.$emit("add-student", newStudent);
 
-      (this.nim = ""),
-        (this.name = ""),
-        (this.periodeMasuk = ""),
-        (this.fakultas = ""),
-        (this.prodi = ""),
-        (this.tempatLahir = ""),
-        (this.tglLahir = ""),
-        (this.jenisKelamin = ""),
-        (this.alamat = "");
+      this.nim = "";
+      this.name = "";
+      this.periodeMasuk = "";
+      this.fakultas = "";
+      this.prodi = "";
+      this.tempatLahir = "";
+      this.tglLahir = "";
+      this.jenisKelamin = "";
+      this.alamat = "";
       this.noTelepon = "";
     },
+  },
+  created() {
+    if (!this.$cookies.isKey("token")) {
+      this.$router.push("/auth/sign-in");
+    }
   },
 };
 </script>

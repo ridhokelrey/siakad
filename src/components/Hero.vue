@@ -5,11 +5,11 @@
       <h2>Universitas Maju Jaya</h2>
       <div class="hero-article">
         <p>
-          Sistem Akademik Terpadu ini memberikan kemudahan perguruan tinggi
-          untuk menghadapi industri 4.0
+          Sistem Akademik Terpadu ini memberikan kemudahan perguruan tinggi untuk
+          menghadapi industri 4.0
         </p>
       </div>
-      <button class="btn">Explore</button>
+      <router-link to="/data-mahasiswa" class="btn">Explore</router-link>
     </div>
     <img src="../assets/images/hero-img.png" />
   </div>
@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: 'Hero',
+  name: "Hero",
 };
 </script>
 

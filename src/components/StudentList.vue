@@ -16,7 +16,11 @@
         <td>{{ student.attributes.periodeMasuk }}</td>
         <td>{{ student.attributes.fakultas }}</td>
         <td>{{ student.attributes.prodi }}</td>
-        <td><a href="/data-mahasiswa/:id">More...</a></td>
+        <td>
+          <router-link :to="{ name: 'StudentDetail', params: { id: student.id } }"
+            >More...</router-link
+          >
+        </td>
       </tbody>
     </table>
   </div>

@@ -3,15 +3,11 @@
     <ul class="sidebar-nav">
       <li class="sidebar-nav-link">
         <img class="sidebar-icon" src="../assets/icons/id-card.svg" />
-        <button @click="this.$emit('show-student-list-button')">
-          Daftar Mahasiswa
-        </button>
+        <router-link to="/data-mahasiswa"> Daftar Mahasiswa </router-link>
       </li>
       <li class="sidebar-nav-link">
         <img class="sidebar-icon" src="../assets/icons/add-user.svg" />
-        <button @click="this.$emit('show-add-student-button')">
-          Tambah Mahasiswa
-        </button>
+        <router-link to="/data-mahasiswa/tambah-mahasiswa">Tambah Mahasiswa</router-link>
       </li>
       <li class="sidebar-nav-link">
         <img class="sidebar-icon" src="../assets/icons/table.svg" />
@@ -27,7 +23,7 @@
 
 <script>
 export default {
-  name: 'SidebarMenu',
+  name: "SidebarMenu",
 };
 </script>
 

@@ -3,15 +3,13 @@
     <Header />
     <div class="container">
       <div class="container-content">
-        <!-- sidebar menu -->
         <SidebarMenu
           @show-student-list-button="showStudentListButton"
           @show-add-student-button="showAddStudentButton"
         />
         <div class="student-content">
           <LoadingSpinner v-show="loading" />
-          <StudentList v-show="showStudentList" :students="students" />
-          <AddStudentForm v-show="showAddStudent" @add-student="addStudent" />
+          <StudentList v-show="!loading && showStudentList" :students="students" />
         </div>
       </div>
     </div>
@@ -62,8 +60,8 @@ export default {
 
       this.students = [...this.students, data];
     },
-    showStudentListButton() {
-      this.showStudentList = !this.showStudentList;
+    async showStudentListButton() {
+      this.showStudentList = true;
       this.showAddStudent = false;
     },
     showAddStudentButton() {
@@ -80,9 +78,13 @@ export default {
     },
   },
   async created() {
+    if (!this.$cookies.isKey("token")) {
+      this.$router.push("/auth/sign-in");
+    }
     this.loading = true;
     this.students = await this.fetchStudents();
     this.loading = false;
+    this.showStudentList = true;
   },
 };
 </script>
