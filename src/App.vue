@@ -3,10 +3,10 @@
 </template>
 
 <script>
-import Home from './views/Home.vue';
+import Home from "./views/Home.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
     Home,
   },
@@ -14,7 +14,7 @@ export default {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
 
 * {
   margin: 0;
@@ -22,7 +22,7 @@ export default {
   box-sizing: border-box;
 }
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 .container {
   display: flex;
@@ -37,7 +37,6 @@ body {
   color: #fff;
   border: none;
   padding: 10px 20px;
-  /* margin: 5px; */
   border-radius: 5px;
   cursor: pointer;
   text-decoration: none;
@@ -53,5 +52,25 @@ body {
 .btn-block {
   display: block;
   width: 100%;
+}
+
+@media screen and (max-width: 1024px) {
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80%;
+    margin: 0 90px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80%;
+    margin: 0 50px;
+  }
 }
 </style>

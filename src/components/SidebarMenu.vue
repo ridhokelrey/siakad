@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar-menu">
+  <div>
     <ul class="sidebar-nav">
       <li class="sidebar-nav-link">
         <img class="sidebar-icon" src="../assets/icons/id-card.svg" />
@@ -8,14 +8,6 @@
       <li class="sidebar-nav-link">
         <img class="sidebar-icon" src="../assets/icons/add-user.svg" />
         <router-link to="/data-mahasiswa/tambah-mahasiswa">Tambah Mahasiswa</router-link>
-      </li>
-      <li class="sidebar-nav-link">
-        <img class="sidebar-icon" src="../assets/icons/table.svg" />
-        <button to="/data-mahasiswa">Jadwal Kuliah</button>
-      </li>
-      <li class="sidebar-nav-link">
-        <img class="sidebar-icon" src="../assets/icons/test-result.svg" />
-        <button to="/data-mahasiswa">Nilai Mahasiswa</button>
       </li>
     </ul>
   </div>
@@ -56,5 +48,21 @@ export default {
 .sidebar-icon {
   width: 30px;
   height: 30px;
+}
+
+@media screen and (max-width: 1024px) {
+  .sidebar-nav li {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar-nav {
+    width: 350px;
+    display: flex;
+  }
+  .sidebar-nav li {
+    font-size: 12px;
+  }
 }
 </style>

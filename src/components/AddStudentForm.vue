@@ -190,4 +190,42 @@ select {
 .btn {
   margin-top: 20px;
 }
+
+@media screen and (max-width: 1024px) {
+  .form-add {
+    width: 350px;
+    column-gap: 20px;
+  }
+  .form-control label {
+    font-size: 12px;
+  }
+  .form-control input,
+  select {
+    width: 100%;
+    margin: 0px;
+    font-size: 12px;
+  }
+  .btn {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .form-add {
+    width: 350px;
+    column-gap: 20px;
+  }
+  .form-control label {
+    font-size: 12px;
+  }
+  .form-control input,
+  select {
+    width: 100%;
+    margin: 0px;
+    font-size: 12px;
+  }
+  .btn {
+    font-size: 12px;
+  }
+}
 </style>

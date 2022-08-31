@@ -32,4 +32,27 @@ img {
   margin-top: 20px;
   margin-bottom: 40px;
 }
+
+@media screen and (max-width: 1024px) {
+  .hero-article {
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  img {
+    height: 300px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    display: block;
+  }
+  .hero-section {
+    padding-top: 25%;
+  }
+  img {
+    visibility: hidden;
+    height: 5px;
+  }
+}
 </style>

@@ -21,4 +21,10 @@ export default {
 img {
   width: 180px;
 }
+
+@media screen and (max-width: 768px) {
+  .spinner {
+    margin-left: 40px;
+  }
+}
 </style>

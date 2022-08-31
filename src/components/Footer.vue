@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'Footer',
+  name: "Footer",
 };
 </script>
 
@@ -20,5 +20,11 @@ export default {
 p {
   font-size: 16px;
   color: #8c8c8c;
+}
+
+@media screen and (max-width: 768px) {
+  p {
+    font-size: 12px;
+  }
 }
 </style>

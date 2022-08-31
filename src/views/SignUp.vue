@@ -103,4 +103,11 @@ export default {
   border-radius: 5px;
   border: 1px solid #8f8f8f;
 }
+
+@media screen and (max-width: 768px) {
+  .content-container {
+    width: 70%;
+    padding: 50px 50px;
+  }
+}
 </style>

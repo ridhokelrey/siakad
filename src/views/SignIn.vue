@@ -108,4 +108,11 @@ export default {
   background-color: #565ce2;
   color: #fff;
 }
+
+@media screen and (max-width: 768px) {
+  .content-container {
+    width: 70%;
+    padding: 50px 50px;
+  }
+}
 </style>

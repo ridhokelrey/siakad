@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <div class="logo">
-      <img src="../assets/icons/logo.png" alt="logo" />
+      <img src="../assets/icons/logo.svg" alt="logo" />
     </div>
     <ul class="nav-link">
       <li><router-link to="/">Beranda</router-link></li>
@@ -50,7 +50,6 @@ export default {
 }
 .logo {
   font-size: 25px;
-  font-weight: bold;
 }
 .nav-link {
   display: flex;
@@ -96,5 +95,39 @@ export default {
 .btn-block {
   display: block;
   width: 100%;
+}
+
+@media screen and (max-width: 1024px) {
+  .navbar {
+    margin: 0 90px;
+  }
+  .nav-link {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .nav-link li {
+    font-size: 16px;
+  }
+  .nav-link li button {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    margin: 0 50px;
+  }
+  .nav-link {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .nav-link li {
+    font-size: 16px;
+  }
+  .nav-link li button {
+    font-size: 16px;
+  }
 }
 </style>

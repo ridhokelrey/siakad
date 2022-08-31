@@ -49,4 +49,10 @@ export default {
   width: 70%;
   padding-left: 20px;
 }
+
+@media screen and (max-width: 768px) {
+  .container-content {
+    display: block;
+  }
+}
 </style>
