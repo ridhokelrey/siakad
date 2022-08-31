@@ -2,7 +2,7 @@
   <form @submit="onSubmit" class="form-add">
     <div class="form-control">
       <label>NIM</label>
-      <input type="text" v-model="nim" name="nim" placeholder="NIM" />
+      <input type="text" v-model="nim" name="nim" />
     </div>
 
     <div class="form-control">
@@ -94,7 +94,7 @@
       />
     </div>
     <div>
-      <button class="btn" type="submit">Tambah Mahasiswa</button>
+      <button class="btn" type="submit">Update Mahasiswa</button>
     </div>
   </form>
 </template>
@@ -106,15 +106,19 @@ import SidebarMenu from "./SidebarMenu.vue";
 import StudentList from "./StudentList.vue";
 
 export default {
-  name: "AddStudentForm",
+  name: "UpdateStudentForm",
   components: {
     Header,
     Footer,
     SidebarMenu,
     StudentList,
   },
+  props: {
+    students: Object,
+  },
   data() {
     return {
+      student: {},
       nim: "",
       name: "",
       periodeMasuk: "",
@@ -136,7 +140,8 @@ export default {
         return;
       }
 
-      const newStudent = {
+      // make form value to be an object
+      const updStudent = {
         nim: this.nim,
         name: this.name,
         periodeMasuk: this.periodeMasuk,
@@ -149,8 +154,10 @@ export default {
         noTelepon: this.noTelepon,
       };
 
-      this.$emit("add-student", newStudent);
+      // run updateStudent method with updStudent and id parameter
+      this.$emit("update-student", updStudent, this.$route.params.id);
 
+      // clear the form
       this.nim = "";
       this.name = "";
       this.periodeMasuk = "";
@@ -162,11 +169,37 @@ export default {
       this.alamat = "";
       this.noTelepon = "";
     },
+
+    // method to fetch single student data by ID
+    async fetchStudent(id) {
+      const res = await fetch(
+        `https://afternoon-garden-05625.herokuapp.com/api/students/${id}`
+      );
+
+      const data = await res.json();
+
+      return data.data;
+    },
   },
-  created() {
+
+  async created() {
+    // check there is token or not, if nothing, go forward to login page
     if (!this.$cookies.isKey("token")) {
       this.$router.push("/auth/sign-in");
     }
+
+    // fetch student by id and then fill the value to the data
+    this.student = await this.fetchStudent(this.$route.params.id);
+    this.nim = this.student.attributes.nim;
+    this.name = this.student.attributes.name;
+    this.periodeMasuk = this.student.attributes.periodeMasuk;
+    this.fakultas = this.student.attributes.fakultas;
+    this.prodi = this.student.attributes.prodi;
+    this.tempatLahir = this.student.attributes.tempatLahir;
+    this.tglLahir = this.student.attributes.tglLahir;
+    this.jenisKelamin = this.student.attributes.jenisKelamin;
+    this.alamat = this.student.attributes.alamat;
+    this.noTelepon = this.student.attributes.noTelepon;
   },
 };
 </script>

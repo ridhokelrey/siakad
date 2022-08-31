@@ -25,13 +25,13 @@
         <td>
           <router-link
             class="action"
-            :to="{ name: 'StudentDetail', params: { id: student.id } }"
+            :to="{ name: 'UpdateStudent', params: { id: student.id } }"
           >
             <img src="../assets/icons/edit.svg"
           /></router-link>
-          <router-link :to="{ name: 'StudentDetail', params: { id: student.id } }">
-            <img src="../assets/icons/remove.svg"
-          /></router-link>
+          <button @click="$emit('delete-student', student.id)">
+            <img src="../assets/icons/remove.svg" />
+          </button>
         </td>
       </tbody>
     </table>
@@ -60,9 +60,30 @@ td {
   border-bottom: 1px solid #c0c0c0;
   border-left: 1px solid #c0c0c0;
 }
-
 .action {
   margin-right: 10px;
+}
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1240px) {
+  .student-list {
+    margin-left: 0;
+  }
+  h1 {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+  td {
+    padding: 3px;
+    font-size: 12px;
+  }
+  .action {
+    margin-right: 0px;
+  }
 }
 
 @media screen and (max-width: 1024px) {
@@ -75,7 +96,7 @@ td {
   }
   td {
     padding: 3px;
-    font-size: 10px;
+    font-size: 12px;
   }
   .action {
     margin-right: 0px;

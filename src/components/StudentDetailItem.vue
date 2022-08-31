@@ -56,6 +56,25 @@ h3 {
   margin-bottom: 15px;
 }
 
+@media screen and (max-width: 1240px) {
+  .container-content {
+    height: 100%;
+    display: block;
+  }
+  .student-detail-attribute {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .student-detail-attribute img {
+    width: 100px;
+  }
+  .student-detail-value {
+    width: 100%;
+    margin-left: 2rem;
+    padding: 20px;
+  }
+}
 @media screen and (max-width: 1024px) {
   .container-content {
     height: 100%;

@@ -3,17 +3,17 @@
     <Header />
     <div class="container">
       <div class="container-content">
-        <SidebarMenu
-          @show-student-list-button="showStudentListButton"
-          @show-add-student-button="showAddStudentButton"
-        />
+        <SidebarMenu />
         <div class="student-content">
           <LoadingSpinner v-show="loading" />
-          <StudentList v-show="!loading && showStudentList" :students="students" />
+          <StudentList
+            v-show="!loading"
+            :students="students"
+            @delete-student="deleteStudent"
+          />
         </div>
       </div>
     </div>
-    <Footer />
   </div>
 </template>
 
@@ -39,35 +39,39 @@ export default {
     return {
       students: [],
       loading: true,
-      showStudentList: false,
-      showAddStudent: false,
     };
   },
   methods: {
-    async addStudent(student) {
-      const res = await fetch(
-        "https://afternoon-garden-05625.herokuapp.com/api/students/",
-        {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({ data: student }),
+    // method to delete single student data by ID
+    async deleteStudent(id) {
+      if (confirm("Are you sure?")) {
+        const res = await fetch(
+          `https://afternoon-garden-05625.herokuapp.com/api/students/${id}`,
+          {
+            method: "DELETE",
+          }
+        );
+
+        if (res.status === 200) {
+          this.students = this.students.filter((student) => student.id !== id);
+        } else {
+          alert("Gagal menghapus mahasiswa");
         }
+      }
+    },
+
+    // method to fetch single student data by ID
+    async fetchStudent(id) {
+      const res = await fetch(
+        `https://afternoon-garden-05625.herokuapp.com/api/students/${id}`
       );
 
       const data = await res.json();
 
-      this.students = [...this.students, data];
+      return data.data;
     },
-    async showStudentListButton() {
-      this.showStudentList = true;
-      this.showAddStudent = false;
-    },
-    showAddStudentButton() {
-      this.showAddStudent = !this.showAddStudent;
-      this.showStudentList = false;
-    },
+
+    // method to fetch all students data
     async fetchStudents() {
       const res = await fetch(
         "https://afternoon-garden-05625.herokuapp.com/api/students"
@@ -78,13 +82,18 @@ export default {
     },
   },
   async created() {
+    // check there is token or not, if nothing, go forward to login page
     if (!this.$cookies.isKey("token")) {
       this.$router.push("/auth/sign-in");
     }
+
+    // fetch all students data and then set loading false after get all data completed
     this.loading = true;
     this.students = await this.fetchStudents();
     this.loading = false;
-    this.showStudentList = true;
+  },
+  async mounted() {
+    this.students = await this.fetchStudents();
   },
 };
 </script>
@@ -95,7 +104,7 @@ export default {
 }
 .container-content {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   display: flex;
   box-shadow: 0px 15px 30px rgba(0, 0, 0, 0.1);
 }

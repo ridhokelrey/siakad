@@ -5,6 +5,7 @@ import Contact from '../views/Contact.vue';
 import NotFound from '../views/NotFound.vue'
 import StudentDetail from '../views/StudentDetail.vue'
 import AddStudent from '../views/AddStudentItem.vue'
+import UpdateStudent from '../views/UpdateStudentItem.vue'
 import SignUp from '../views/SignUp.vue'
 import SignIn from '../views/SignIn.vue'
 
@@ -29,6 +30,11 @@ const routes = [
     path: '/data-mahasiswa/tambah-mahasiswa',
     name: 'AddStudent',
     component: AddStudent,
+  },
+  {
+    path: '/data-mahasiswa/update-mahasiswa/:id',
+    name: 'UpdateStudent',
+    component: UpdateStudent,
   },
   {
     path: '/contact',

@@ -6,7 +6,6 @@
         <img src="../assets/icons/left-arrow.svg" />
         <router-link to="/data-mahasiswa"> Back</router-link>
       </div>
-      <LoadingSpinner v-show="loading" />
       <StudentDetailItem v-show="!loading" :student="student" />
     </div>
     <Footer />
@@ -17,7 +16,6 @@
 import Header from "../components/Header.vue";
 import Footer from "../components/Footer.vue";
 import StudentDetailItem from "../components/StudentDetailItem.vue";
-import LoadingSpinner from "../components/LoadingSpinner.vue";
 
 export default {
   name: "StudentDetail",
@@ -26,15 +24,14 @@ export default {
     Header,
     Footer,
     StudentDetailItem,
-    LoadingSpinner,
   },
   data() {
     return {
       student: {},
-      loading: true,
     };
   },
   methods: {
+    // method to fetch single data student by ID
     async fetchStudent(id) {
       const res = await fetch(
         `https://afternoon-garden-05625.herokuapp.com/api/students/${id}`
@@ -46,12 +43,13 @@ export default {
     },
   },
   async created() {
+    // check there is token or not, if nothing, go forward to login page
     if (!this.$cookies.isKey("token")) {
       this.$router.push("/auth/sign-in");
     }
-    this.loading = true;
+
+    // run fetch single student data and store in student
     this.student = await this.fetchStudent(this.id);
-    this.loading = false;
   },
 };
 </script>

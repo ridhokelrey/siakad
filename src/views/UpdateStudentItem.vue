@@ -5,7 +5,7 @@
       <div class="container-content">
         <SidebarMenu />
         <div class="student-content">
-          <AddStudentForm @add-student="addStudent" />
+          <UpdateStudentForm @update-student="updateStudent" />
         </div>
       </div>
     </div>
@@ -16,33 +16,26 @@
 import Header from "../components/Header.vue";
 import Footer from "../components/Footer.vue";
 import SidebarMenu from "../components/SidebarMenu.vue";
-import AddStudentForm from "../components/AddStudentForm.vue";
+import UpdateStudentForm from "../components/UpdateStudentForm.vue";
 
 export default {
-  name: "AddStudentItem",
+  name: "UpdateStudentItem",
   components: {
     Header,
     Footer,
     SidebarMenu,
-    AddStudentForm,
+    UpdateStudentForm,
   },
   methods: {
-    // method to create a student data
-    async addStudent(student) {
-      const res = await fetch(
-        "https://afternoon-garden-05625.herokuapp.com/api/students/",
-        {
-          method: "POST",
-          headers: {
-            "Content-type": "application/json",
-          },
-          body: JSON.stringify({ data: student }),
-        }
-      );
-
-      const data = await res.json();
-
-      this.students = [...this.students, data];
+    // method to update single student data
+    async updateStudent(updStudent, id) {
+      await fetch(`https://afternoon-garden-05625.herokuapp.com/api/students/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ data: updStudent }),
+      });
     },
   },
 };
